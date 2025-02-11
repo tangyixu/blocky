@@ -23,14 +23,14 @@ public class Board {
     
     public boolean collides(boolean[][] layout, Position pos) {
         for (int row = 0; row < layout.length; row++) {
-            int boardRow = pos.row - row;
+            int boardRow = pos.row + row; //-
             for (int col = 0; col < layout[row].length; col++) {
                 int boardCol = col + pos.col;
                 if (layout[row][col]) {
                     if (!isValidPosition(boardRow, boardCol)) {
                         return true;
-                    } else if (board[boardRow][boardCol]) {
-                        return true;
+                    } else {//if (board[boardRow][boardCol]) {
+                        return false;
                     }
                 }
             }
@@ -53,14 +53,23 @@ public class Board {
     }
     
     public void deleteRow(int n) {
-        for (int row = 0; row < n - 1; row++) {
+        for (int row = n; row > 1; row--) {
             for (int col = 0; col < Constants.BOARD_WIDTH; col++) {
-                board[row][col] = board[row+1][col];
+                board[row][col] = board[row-1][col];
             }
         }
         for (int col = 0; col < Constants.BOARD_WIDTH; col++) {
             board[n][col] = false;
         }
+// original code       
+//        for (int row = 0; row < n - 1; row++) {
+//            for (int col = 0; col < Constants.BOARD_WIDTH; col++) {
+//                board[row][col] = board[row+1][col];
+//            }
+//        }
+//        for (int col = 0; col < Constants.BOARD_WIDTH; col++) {
+//            board[n][col] = false;
+//        }
     }
     
     public void deleteRows(List rows) {

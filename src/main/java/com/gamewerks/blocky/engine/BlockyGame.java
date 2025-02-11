@@ -21,14 +21,14 @@ public class BlockyGame {
     
     private void trySpawnBlock() {
         if (activePiece == null) { 
-            activePiece = new Piece(PieceKind.I,//PieceKind.shuffleIfNeeded()[PieceKind.currentIndex], 
-                    new Position(20,20));//(int) Math.random()* Constants.BOARD_HEIGHT, 
-                                 //(int) Math.random()* Constants.BOARD_WIDTH));
-//            if (board.collides(activePiece)) {
-//                System.exit(0);
-//            } it's not supposed to collide if it is the first piece active.
-// So comment that out just to check if the program could run, and it 
+            activePiece = new Piece(PieceKind.shuffleIfNeeded()[PieceKind.currentIndex], 
+                                    new Position(5, Constants.BOARD_WIDTH / 2 - 2));
         }
+        if (board.collides(activePiece)) {
+                System.exit(0);
+        } 
+        // it's not supposed to collide if it is the first piece active.
+        // So comment that out just to check if the program could run, and it 
     }
     
     private void processMovement() {
@@ -51,7 +51,7 @@ public class BlockyGame {
     }
     
     private void processGravity() {
-        Position nextPos = activePiece.getPosition().add(-1, 0);
+        Position nextPos = activePiece.getPosition().add(1, 0);
         if (!board.collides(activePiece.getLayout(), nextPos)) {
             lockCounter = 0;
             activePiece.moveTo(nextPos);
@@ -62,6 +62,7 @@ public class BlockyGame {
                 board.addToBoard(activePiece);
                 lockCounter = 0;
                 activePiece = null;
+                trySpawnBlock();//newly added
             }
         }
     }
