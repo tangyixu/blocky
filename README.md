@@ -29,3 +29,8 @@ Author: tangyixu <tangyixu@grinnell.edu>
 Date:   Mon Feb 10 23:10:02 2025 -0600
 
     fix gravity and directions
++ commit b53d811614d42b4b3273e81cc152495cf60e1433 (HEAD -> main, origin/main, origin/HEAD)
+Author: tangyixu <tangyixu@grinnell.edu>
+Date:   Mon Feb 10 23:52:33 2025 -0600
+
+    Add processMovements
