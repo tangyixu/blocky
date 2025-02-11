@@ -24,6 +24,9 @@ public class Piece {
             System.exit(-1);
         }
     }
+    // the try-catch method used to be wrapped by static, it caused InitializationError, 
+    // so we fix that by adding it into the piece constructor, and now it is 
+    // working. But not sure if we need to keep make it static, we will see.
     
     public Position getPosition() {
         return pos;

@@ -24,7 +24,8 @@ public class BlockyGame {
             activePiece = new Piece(PieceKind.I, new Position(Constants.BOARD_HEIGHT - 1, Constants.BOARD_WIDTH / 2 - 2));
 //            if (board.collides(activePiece)) {
 //                System.exit(0);
-//            }
+//            } it's not supposed to collide if it is the first piece active.
+// So comment that out just to check if the program could run, and it did.
         }
     }
     
