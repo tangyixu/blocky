@@ -7,14 +7,14 @@ import com.gamewerks.blocky.util.Constants;
 import com.gamewerks.blocky.util.Position;
 
 public class Board {
-    private boolean[][] well;
+    private boolean[][] board;
     
     public Board() {
-        well = new boolean[Constants.BOARD_HEIGHT][Constants.BOARD_WIDTH];
+        board = new boolean[Constants.BOARD_HEIGHT][Constants.BOARD_WIDTH];
     }
     
     public boolean isValidPosition(int row, int col) {
-        return row >= 0 && row <= well.length && col >= 0 && col <= well[0].length;
+        return row >= 0 && row <= board.length && col >= 0 && col <= board[0].length;
     }
     
     public boolean collides(Piece p) {
@@ -23,13 +23,13 @@ public class Board {
     
     public boolean collides(boolean[][] layout, Position pos) {
         for (int row = 0; row < layout.length; row++) {
-            int wellRow = pos.row - row;
+            int boardRow = pos.row - row;
             for (int col = 0; col < layout[row].length; col++) {
-                int wellCol = col + pos.col;
+                int boardCol = col + pos.col;
                 if (layout[row][col]) {
-                    if (!isValidPosition(wellRow, wellCol)) {
+                    if (!isValidPosition(boardRow, boardCol)) {
                         return true;
-                    } else if (well[wellRow][wellCol]) {
+                    } else if (board[boardRow][boardCol]) {
                         return true;
                     }
                 }
@@ -38,15 +38,15 @@ public class Board {
         return false;
     }
     
-    public void addToWell(Piece p) {
+    public void addToBoard(Piece p) {
         boolean[][] layout = p.getLayout();
         Position pos = p.getPosition();
         for (int row = 0; row < layout.length; row++) {
-            int wellRow = pos.row - row;
+            int boardRow = pos.row - row;
             for (int col = 0; col < layout[row].length; col++) {
-                int wellCol = pos.col + col;
-                if (isValidPosition(wellRow, wellCol) && layout[row][col]) {
-                    well[wellRow][wellCol] = true;
+                int boardCol = pos.col + col;
+                if (isValidPosition(boardRow, boardCol) && layout[row][col]) {
+                    board[boardRow][boardCol] = true;
                 }
             }
         }
@@ -55,11 +55,11 @@ public class Board {
     public void deleteRow(int n) {
         for (int row = 0; row < n - 1; row++) {
             for (int col = 0; col < Constants.BOARD_WIDTH; col++) {
-                well[row][col] = well[row+1][col];
+                board[row][col] = board[row+1][col];
             }
         }
         for (int col = 0; col < Constants.BOARD_WIDTH; col++) {
-            well[n][col] = false;
+            board[n][col] = false;
         }
     }
     
@@ -73,7 +73,7 @@ public class Board {
     public boolean isCompletedRow(int row) {
         boolean isCompleted = true;
         for (int col = 0; col < Constants.BOARD_WIDTH; col++) {
-            isCompleted = isCompleted && well[row][col];
+            isCompleted = isCompleted && board[row][col];
         }
         return isCompleted;
     }
@@ -82,11 +82,13 @@ public class Board {
         List completedRows = new LinkedList();
         for (int row = 0; row < Constants.BOARD_HEIGHT; row++) {
             if (isCompletedRow(row)) {
-                completedRows.add(well[row]);
+                completedRows.add(board[row]);
             }
         }
         return completedRows;
     }
     
-    public boolean[][] getWell() { return well; }
+    public boolean[][] getBoard() {
+        return board; 
+    }
 }

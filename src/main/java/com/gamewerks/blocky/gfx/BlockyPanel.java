@@ -26,7 +26,7 @@ public class BlockyPanel extends JPanel {
     }
     
     public void paintComponent(Graphics g) {
-        boolean[][] well = game.getWell();
+        boolean[][] board = game.getBoard();
         g.setColor(Color.GRAY);
         g.fillRect(0, 0, width, height);
         
@@ -48,7 +48,7 @@ public class BlockyPanel extends JPanel {
         g.setColor(Color.GREEN);
         for (int row = 0; row < Constants.BOARD_HEIGHT; row++) {
             for (int col = 0; col < Constants.BOARD_WIDTH; col++) {
-                if (well[row][col]) {
+                if (board[row][col]) {
                     g.fillRect(col * BLOCK_SIZE, BLOCK_SIZE * (row + 1), BLOCK_SIZE, BLOCK_SIZE);
                 }
             }

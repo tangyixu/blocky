@@ -56,7 +56,7 @@ public class BlockyGame {
             if (lockCounter < LOCK_DELAY_LIMIT) {
                 lockCounter += 1;
             } else {
-                board.addToWell(activePiece);
+                board.addToBoard(activePiece);
                 lockCounter = 0;
                 activePiece = null;
             }
@@ -73,8 +73,8 @@ public class BlockyGame {
         processClearedLines();
     }
     
-    public boolean[][] getWell() {
-        return board.getWell();
+    public boolean[][] getBoard() {
+        return board.getBoard();
     }
     
     public Piece getActivePiece() { return activePiece; }
