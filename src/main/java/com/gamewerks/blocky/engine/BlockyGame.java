@@ -20,12 +20,14 @@ public class BlockyGame {
     }
     
     private void trySpawnBlock() {
-        if (activePiece == null) {
-            activePiece = new Piece(PieceKind.ALL[PieceKind.randomKind()], new Position(Constants.BOARD_HEIGHT - 1, Constants.BOARD_WIDTH / 2 - 2));
+        if (activePiece == null) { 
+            activePiece = new Piece(PieceKind.I,//PieceKind.shuffleIfNeeded()[PieceKind.currentIndex], 
+                    new Position(20,20));//(int) Math.random()* Constants.BOARD_HEIGHT, 
+                                 //(int) Math.random()* Constants.BOARD_WIDTH));
 //            if (board.collides(activePiece)) {
 //                System.exit(0);
 //            } it's not supposed to collide if it is the first piece active.
-// So comment that out just to check if the program could run, and it did
+// So comment that out just to check if the program could run, and it 
         }
     }
     
@@ -78,7 +80,15 @@ public class BlockyGame {
         return board.getBoard();
     }
     
-    public Piece getActivePiece() { return activePiece; }
-    public void setDirection(Direction movement) { this.movement = movement; }
-    public void rotatePiece(boolean dir) { activePiece.rotate(dir); }
+    public Piece getActivePiece() { 
+        return activePiece; 
+    }
+    
+    public void setDirection(Direction movement) {
+        this.movement = movement; 
+    }
+    
+    public void rotatePiece(boolean dir) { 
+        activePiece.rotate(dir); 
+    }
 }
