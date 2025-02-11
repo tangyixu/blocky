@@ -38,9 +38,10 @@ public class Blocky {
             
             public void keyReleased(KeyEvent e) {
                 int code = e.getKeyCode();
-                if (code == e.VK_LEFT || code == e.VK_RIGHT) {
-                    game.setDirection(Direction.NONE);
-                } else if (code == e.VK_Z) {
+//                if (code == e.VK_LEFT || code == e.VK_RIGHT) {
+//                    game.setDirection(Direction.NONE);
+//                } else 
+                if (code == e.VK_Z) {
                     game.rotatePiece(false);
                 } else if (code == e.VK_X) {
                     game.rotatePiece(true);
