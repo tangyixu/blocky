@@ -4,14 +4,13 @@ _(Gamewerks corporation internal code—do not share!)_
 
 ## Credits
 
-Primary developer: _(TODO: fill me in)_
+Primary developer: Tiffany Tang
 
 ### Resources Used
 
-+ _(TODO: fill me in)_
-+ ...
-+ ...
-
++ https://osera.cs.grinnell.edu/ttap/data-structures-labs/the-worlds-best-internship.html
++ https://github.com/psosera/blocky
++ https://docs.oracle.com/javase/8/docs/api/
 ## Changelog
 
 ~~~console
