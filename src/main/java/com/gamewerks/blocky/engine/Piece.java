@@ -9,16 +9,6 @@ import com.gamewerks.blocky.util.Position;
 public class Piece {
     
     private static HashMap ROTATION_DATA = null;
-    
-    static {
-        try {
-            ROTATION_DATA = Loader.loadAllRotationData();
-        } catch (IOException ex) {
-            System.out.println("Exception occurred loading rotation data");
-            System.exit(-1);
-        }
-    }
-    
     private PieceKind kind;
     private int orientation;
     private Position pos;
@@ -27,6 +17,12 @@ public class Piece {
         this.kind = kind;
         orientation = 0;
         this.pos = pos;
+        try {
+            ROTATION_DATA = Loader.loadAllRotationData();
+        } catch (IOException ex) {
+            System.out.println("Exception occurred loading rotation data");
+            System.exit(-1);
+        }
     }
     
     public Position getPosition() {
