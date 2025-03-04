@@ -13,5 +13,7 @@ public class Position {
         return new Position(this.row + row, this.col + col);
     }
     
-    public String toString() { return String.format("(row = %d, col = %d)", row, col); } 
+    public String toString() { 
+        return String.format("(row = %d, col = %d)", row, col); 
+    } 
 }

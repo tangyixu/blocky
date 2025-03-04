@@ -14,7 +14,7 @@ public class Board {
     }
     
     public boolean isValidPosition(int row, int col) {
-        return row >= 0 && row <= board.length && col >= 0 && col <= board[0].length;
+        return row >= 0 && row < board.length && col >= 0 && col < board[0].length;
     }
     
     public boolean collides(Piece p) {
@@ -23,14 +23,14 @@ public class Board {
     
     public boolean collides(boolean[][] layout, Position pos) {
         for (int row = 0; row < layout.length; row++) {
-            int boardRow = pos.row + row; //-
+            int boardRow = pos.row + row; 
             for (int col = 0; col < layout[row].length; col++) {
                 int boardCol = col + pos.col;
                 if (layout[row][col]) {
                     if (!isValidPosition(boardRow, boardCol)) {
                         return true;
-                    } else {//if (board[boardRow][boardCol]) {
-                        return false;
+                    } else if (board[boardRow][boardCol]) {
+                        return true;
                     }
                 }
             }
@@ -42,7 +42,7 @@ public class Board {
         boolean[][] layout = p.getLayout();
         Position pos = p.getPosition();
         for (int row = 0; row < layout.length; row++) {
-            int boardRow = pos.row - row;
+            int boardRow = pos.row + row;
             for (int col = 0; col < layout[row].length; col++) {
                 int boardCol = pos.col + col;
                 if (isValidPosition(boardRow, boardCol) && layout[row][col]) {
@@ -58,18 +58,6 @@ public class Board {
                 board[row][col] = board[row-1][col];
             }
         }
-        for (int col = 0; col < Constants.BOARD_WIDTH; col++) {
-            board[n][col] = false;
-        }
-// original code       
-//        for (int row = 0; row < n - 1; row++) {
-//            for (int col = 0; col < Constants.BOARD_WIDTH; col++) {
-//                board[row][col] = board[row+1][col];
-//            }
-//        }
-//        for (int col = 0; col < Constants.BOARD_WIDTH; col++) {
-//            board[n][col] = false;
-//        }
     }
     
     public void deleteRows(List rows) {
@@ -91,7 +79,7 @@ public class Board {
         List completedRows = new LinkedList();
         for (int row = 0; row < Constants.BOARD_HEIGHT; row++) {
             if (isCompletedRow(row)) {
-                completedRows.add(board[row]);
+                completedRows.add(row);
             }
         }
         return completedRows;
