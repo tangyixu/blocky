@@ -19,11 +19,9 @@ public enum PieceKind {
     public static PieceKind[] shuffleIfNeeded() {
         if(PieceKind.currentIndex == 6) {
            PieceKind.currentIndex = 0;
-           int index = 0;
            for(int n = 6; n > 0; n--) {
-              int random = (int) (Math.random()* n);
-              swap(random, index);  
-              index++;
+              int random = (int) (Math.random()* (n + 1));
+              swap(random, n);  
            }  
         } else {
           PieceKind.currentIndex++;
